@@ -3,7 +3,7 @@ import './item-add-form.css';
 
 export default class ItemAddForm extends Component {
 state = {
-    name:'',
+    firstname:'',
     lastName:'',
     email:'',
     from:'',
@@ -33,14 +33,19 @@ handleInputChange = (e) =>{
     const email = target.email;
     const from = target.from;
     const to = target.to;
+    const type = target.type.value;
+    const check = target.check === 'checkbox' ? target.checked : target.check;
+    const text = target.text;
    
     this.setState({
         firstname: firstname,
         lastName: lastName,
         email: email,
         from: from,
-        to: to
-        
+        to: to,
+        type: type,
+        check: check,
+        text: text
     });
 }
     render(){ 
@@ -73,7 +78,7 @@ handleInputChange = (e) =>{
            
             <div class="col-md-8 mb-3">
             <label for="validationDefault04">Type</label>
-            <select  value={this.state.type} class="custom-select custom-select-sm">
+            <select  value={this.state.type} onChange={this.handleInputChange} class="custom-select custom-select-sm">
             <option selected>Open this select menu</option>
             <option value="1">Developing</option>
             <option value="2">Testing</option>
@@ -82,7 +87,7 @@ handleInputChange = (e) =>{
             </div>
             <div class="form-group">
               <div class="form-check">
-                <input class="form-check-input"  value={this.state.check} type="checkbox" id="invalidCheck2" required/>
+                <input class="form-check-input"  checked={this.state.check}  onChange={this.handleInputChange} type="checkbox" id="invalidCheck2" required/>
                 <label class="form-check-label" for="invalidCheck2">
                  Make report
                 </label>
@@ -90,7 +95,7 @@ handleInputChange = (e) =>{
             </div>
             <div class="col-md-8 mb-4">
             <label for="validationDefault04">Comments</label>
-          <textarea  value={this.state.text} class="form-control"/>
+          <textarea  value={this.state.text}  onChange={this.handleInputChange} class="form-control"/>
         </div>
             <button class="btn btn-primary" type="submit">Add</button>
           </form>
