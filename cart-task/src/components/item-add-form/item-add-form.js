@@ -50,7 +50,7 @@ handleInputChange = (e) =>{
 }
     render(){ 
         return(
-            <form>
+            <form  onSubmit={this.onSubmit}>
           
               <div class="col-sm-8">
                 <label for="validationDefault01">First name</label>

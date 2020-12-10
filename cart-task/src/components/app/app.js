@@ -41,7 +41,7 @@ export default class App extends Component {
     return(
       <div className="cart-task">
       <AppHeader />
-      <TaskList/>
+      <TaskList carttask = {cartTask} />
       <ItemAddForm  onItemAdded={this.addItem} />
     </div>
     );
