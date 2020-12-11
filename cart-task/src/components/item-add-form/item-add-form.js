@@ -10,7 +10,8 @@ state = {
     to:'',
     type:'',
     comments:'',
-    check:false
+    check:false,
+    show : true
 }
 onSubmit = (e) => {
     this.props.onItemAdded(this.state.firstname,this.state.lastname,this.state.email,this.state.from,this.state.to,this.state.type,this.state.checkbox,this.state.comments,);
@@ -75,9 +76,19 @@ handleInputChangeto = (e) =>{
         to: e.target.value,
     });
 }
+hideText = () =>{
+    this.setState({show: !this.state.show});
+};
     render(){ 
+        let show;
+        if (this.state.show) {
+             show = {
+                display: "none"}
+            
+        }
         return(
-            <form  onSubmit={this.onSubmit}>
+            <div>
+            <form classnme="show" style={show} onSubmit={this.onSubmit}>
           
               <div className="col-sm-8">
                 <label>First name</label>
@@ -125,7 +136,10 @@ handleInputChangeto = (e) =>{
           <textarea  value={this.state.comments}  onChange={this.handleInputChangecomments} className="form-control"/>
         </div> 
             <button className="btn btn-primary" type="submit">Add</button>
+            
           </form>
+          <button onClick={this.hideText}>+</button>
+          </div>
         )
     }
 }
