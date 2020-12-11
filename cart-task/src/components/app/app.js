@@ -7,30 +7,34 @@ import TaskList from '../task-list/task-list'
 export default class App extends Component {
   maxId = 100;
   state = {
-    cartTask:[]
+    cartTask:[
+      // this.createToDoItem('sdlfhksdhfksdf')
+    ]
   };
-  createToDoItem(state) {
+  createToDoItem(firstname,lastname,email,from,to,type,checkbox,comments) {
+    
     return {
-      firstname:state.firstname,
-      lastName:state.lastname,
-      email:state.email,
-      from:state.from,
-      to:state.to,
-      type:state.type,
-      text:state.text,
-      check:state.check,
-      id: this.maxId++
+     firstname,
+     lastname,
+     email,
+     from,
+     to,
+     type,
+     checkbox,
+     comments,
+       id: this.maxId++
     }
   }
-  addItem = (text) => {
+  addItem = (firstname,lastname,email,from,to,type,checkbox,comments) => {
     // generate id
-    const newItem = this.createToDoItem(text);
+    const newItem = this.createToDoItem(firstname,lastname,email,from,to,type,checkbox,comments);
     
-    this.setState(({ cartTask}) => {
+    this.setState(({cartTask}) => {
      const newArr = [
-       ... cartTask,
+       ...cartTask,
        newItem
      ];
+
      return {
       cartTask:newArr
      };
@@ -38,6 +42,7 @@ export default class App extends Component {
       };
   render() {
     const {cartTask} = this.state;
+  
     return(
       <div className="cart-task">
       <AppHeader />

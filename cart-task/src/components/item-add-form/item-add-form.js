@@ -9,95 +9,122 @@ state = {
     from:'',
     to:'',
     type:'',
-    text:'',
+    comments:'',
     check:false
 }
 onSubmit = (e) => {
-    e.preventDefault();  //браузер не перегружает страницу
-    this.props.onItemAdded(this.state);
+    this.props.onItemAdded(this.state.firstname,this.state.lastname,this.state.email,this.state.from,this.state.to,this.state.type,this.state.checkbox,this.state.comments,);
     this.setState({
-     firstname:'',
-    lastName:'',
-    email:'',
-    from:'',
-    to:'',
+    firstname:'',
+     lastname:'',
+     email:'',
+     from:'',
+     to:'',
     type:'',
-    text:'',
+    comments:'',
     check:false
     })
+    e.preventDefault(); 
 }
-handleInputChange = (e) =>{
-    const target = e.target;
-    const firstname = target.firstname;
-    const lastName = target.lastName;
-    const email = target.email;
-    const from = target.from;
-    const to = target.to;
-    const type = target.type.value;
-    const check = target.check === 'checkbox' ? target.checked : target.check;
-    const text = target.text;
+handleInputChangefirstname = (e) =>{
    
     this.setState({
-        firstname: firstname,
-        lastName: lastName,
-        email: email,
-        from: from,
-        to: to,
-        type: type,
-        check: check,
-        text: text
+        firstname: e.target.value,
+    });
+}
+handleInputChangelastname = (e) =>{
+   
+    this.setState({
+        lastname: e.target.value,
+    
+    });
+}
+handleInputChangeemail = (e) =>{
+   
+    this.setState({
+        email: e.target.value,
+    });
+}
+handleInputChangefrom = (e) =>{
+   
+    this.setState({
+        from: e.target.value,
+    });
+}
+handleInputChangetype = (e) =>{
+   
+    this.setState({
+        type: e.target.value,
+    });
+}
+handleInputChangecheckbox = (e) =>{
+   
+    this.setState({
+        checkbox: e.target.type === 'checkbox' ? e.target.checked : e.target.value,
+    });
+}
+handleInputChangecomments = (e) =>{
+   
+    this.setState({
+        comments: e.target.value,
+    });
+}
+handleInputChangeto = (e) =>{
+   
+    this.setState({
+        to: e.target.value,
     });
 }
     render(){ 
         return(
             <form  onSubmit={this.onSubmit}>
           
-              <div class="col-sm-8">
-                <label for="validationDefault01">First name</label>
-                <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value={this.state.firstname}   onChange={this.handleInputChange} required/>
+              <div className="col-sm-8">
+                <label>First name</label>
+                <input type="text" className="form-control"  placeholder="First name" value={this.state.firstname}   onChange={this.handleInputChangefirstname} />
               </div>
-              <div class="col-sm-8">
-                <label for="validationDefault02">Last name</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value={this.state.lastName}   onChange={this.handleInputChange} required/>
+              <div className="col-sm-8">
+                <label >Last name</label>
+                <input type="text" className="form-control"  placeholder="Last name" value={this.state.lastname}   onChange={this.handleInputChangelastname} />
               </div>
-              <div class="col-sm-8">
-              <label for="inputEmail3" >Email</label> 
-             <input type="email" class="form-control" id="inputEmail3"  value={this.state.email}   onChange={this.handleInputChange} placeholder="Email" />
+               <div className="col-sm-8">
+              <label>Email</label> 
+             <input type="email" className="form-control" id="inputEmail3"  value={this.state.email}   onChange={this.handleInputChangeemail} placeholder="Email" />
               
               
               </div>
           
-              <div class="col-md-3 mb-3">
-                <label for="validationDefault03">From:</label>
-                <input type="text" class="form-control" id="validationDefault03" placeholder="Date"  value={this.state.from} onChange={this.handleInputChange} required/>
+               <div className="col-md-3 mb-3">
+                <label>From:</label>
+                <input type="text" className="form-control" id="validationDefault03" placeholder="Date"  value={this.state.from} onChange={this.handleInputChangefrom} required/>
               </div>
-              <div class="col-md-3 mb-3">
-                <label for="validationDefault04">To</label>
-                <input type="text" class="form-control" id="validationDefault04" placeholder="Date"    value={this.state.to} onChange={this.handleInputChange} required/>
+              <div className="col-md-3 mb-3">
+                <label>To</label>
+                <input type="text" className="form-control" id="validationDefault04" placeholder="Date"    value={this.state.to} onChange={this.handleInputChangeto} required/>
               </div>
            
-            <div class="col-md-8 mb-3">
-            <label for="validationDefault04">Type</label>
-            <select  value={this.state.type} onChange={this.handleInputChange} class="custom-select custom-select-sm">
-            <option selected>Open this select menu</option>
+             <div className="col-md-8 mb-3">
+            <label>Type</label>
+            <select  value={this.state.type} onChange={this.handleInputChangetype} className="custom-select custom-select-sm">
+            <option>Open this select menu</option>
             <option value="1">Developing</option>
             <option value="2">Testing</option>
             <option value="3">Done</option>
             </select>
             </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input"  checked={this.state.check}  onChange={this.handleInputChange} type="checkbox" id="invalidCheck2" required/>
-                <label class="form-check-label" for="invalidCheck2">
+            <div className="form-group">
+              <div className="form-check">
+                <input className="form-check-input"  checked={this.state.checkbox}  onChange={this.handleInputChangecheckbox} type="checkbox" id="invalidCheck2" required/>
+                <label className="form-check-label">
                  Make report
                 </label>
               </div>
             </div>
-            <div class="col-md-8 mb-4">
-            <label for="validationDefault04">Comments</label>
-          <textarea  value={this.state.text}  onChange={this.handleInputChange} class="form-control"/>
-        </div>
-            <button class="btn btn-primary" type="submit">Add</button>
+            <div className="col-md-8 mb-4">
+            <label>Comments</label>
+          <textarea  value={this.state.comments}  onChange={this.handleInputChangecomments} className="form-control"/>
+        </div> 
+            <button className="btn btn-primary" type="submit">Add</button>
           </form>
         )
     }
