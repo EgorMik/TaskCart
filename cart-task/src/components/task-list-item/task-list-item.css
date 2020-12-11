@@ -1,0 +1,12 @@
+.button{
+    margin-top:25px;
+    margin-left:25px;
+}
+.todo-list-item-label{
+    border-radius: 5px;
+    border-color:black;
+    padding: 20px;
+    margin-top:30px;
+
+  
+}

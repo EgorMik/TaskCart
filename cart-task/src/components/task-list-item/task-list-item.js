@@ -11,7 +11,7 @@ hideText = () =>{
 };
   render(){
    
-    const {firstname, lastname, email, from, to, type, checkbox, comments} = this.props;
+    const {firstname, lastname, email, from, to, type, checkbox, comments, onDeleted} = this.props;
 
 
 
@@ -37,7 +37,7 @@ t = "Developing"
 s = "Make report";
  }
 return (
-  <span >
+  <div classname="tasks">
       <span><i>Here is task of</i> <b>{ firstname}</b></span>
   <ul classnme="show" style={show}>
   <label><b>First name</b></label>
@@ -95,15 +95,16 @@ return (
         
   </span>
   </li>
-  <button type="button"
-          className="btn btn-outline-danger btn-sm float-right"
-          >
-
-    <i className="fa fa-trash-o" />
-  </button>
   </ul>
-  <button onClick={this.hideText}>Show task</button>
-</span>
+  <button className="button"
+onClick={onDeleted}
+ > Delete
+  </button>
+  <button 
+  className="button"
+  onClick={this.hideText}>
+      Show task</button>
+</div>
 
 );
   }
