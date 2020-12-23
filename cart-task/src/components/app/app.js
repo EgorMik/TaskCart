@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './app.css';
 import AppHeader from '../app-header';
 import ItemAddForm from '../item-add-form';
 import TaskList from '../task-list/task-list'
 
-export default class App extends Component {
-  maxId = 100;
-  state = {
-    cartTask:[
-      // this.createToDoItem('sdlfhksdhfksdf')
-    ]
-  };
-  createToDoItem(firstname,lastname,email,from,to,type,checkbox,comments) {
-    
+const App = () => {
+  let maxId = 100;
+  const [todoData, setTodoData] = useState([]);
+  
+
+  const createToDoItem = (firstname,lastname,email,from,to,type,checkbox,comments) => {
     return {
      firstname,
      lastname,
@@ -22,47 +19,36 @@ export default class App extends Component {
      type,
      checkbox,
      comments,
-       id: this.maxId++
+     id: maxId++
     }
   };
-  addItem = (firstname,lastname,email,from,to,type,checkbox,comments) => {
-    // generate id
-    const newItem = this.createToDoItem(firstname,lastname,email,from,to,type,checkbox,comments);
-    
-    this.setState(({cartTask}) => {
-     const newArr = [
-       ...cartTask,
-       newItem
-     ];
 
-     return {
-      cartTask:newArr
-     };
-    });
-      };
-deleteItem = (id)=>{
-        this.setState(({cartTask}) => {
-         const idx = cartTask.findIndex((el) => el.id === id);
-     
-         const newArray = [
-            ...cartTask.slice(0, idx),
-            ...cartTask.slice(idx + 1)];
-         return {
-          cartTask: newArray
-         }; 
-        });
-       };
-  render() {
-    const {cartTask} = this.state;
-  
-    return(
-      <div className="cart-task">
+
+  const addItem = (firstname,lastname,email,from,to,type,checkbox,comments) => {
+  const newItem = createToDoItem(firstname,lastname,email,from,to,type,checkbox,comments);
+  let newArr = [...todoData, newItem];
+  setTodoData(newArr);
+  };
+    
+
+
+  const deleteItem = (id) => {
+  const idx = todoData.findIndex((el) => el.id === id);
+  const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
+  setTodoData(newArray)
+  };
+       
+  return(
+    <div className="cart-task">
       <AppHeader />
-      <TaskList carttask = {cartTask}
-       onDeleted={ this.deleteItem} />
-      <ItemAddForm  onItemAdded={this.addItem} />
+      <TaskList 
+      carttask = {todoData}
+      onDeleted={deleteItem} />
+      <ItemAddForm  onItemAdded={addItem} />
     </div>
     );
-  }
+  
 
 };
+
+export default App;

@@ -11,7 +11,7 @@ const TaskList = ({carttask, onDeleted}) => {
        return (
         <li key={id} className="list-group-item">
           <TaskListItem {...itemProps}
-           onDeleted={() => onDeleted(id)} 
+           onDeleted ={() => onDeleted(id)} 
           />
         </li> 
        );
@@ -20,13 +20,10 @@ const TaskList = ({carttask, onDeleted}) => {
   return (
   
   <ul className="list">
-     
   { elements }
-  
   </ul>
- 
-      );
-      
+
+    );
   };
   export default TaskList;
 

@@ -1,111 +1,88 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './task-list-item.css';
 
+const TodoListItem = ({onDeleted, ...itemProps}) => {
+  const [show, setShow] = useState(true);
 
-export default class TodoListItem extends Component{
-state={
-    show : true
-}
-hideText = () =>{
-    this.setState({show: !this.state.show});
-};
-  render(){
-   
-    const {firstname, lastname, email, from, to, type, checkbox, comments, onDeleted} = this.props;
-
-
-
-    let show;
-    if (this.state.show) {
-         show = {
-            display: "none"}
-        
-    }
+  const {firstname, lastname, email, from, to, type, checkbox, comments} = itemProps;
  
-    let t;
-   if (type==='1'){
-t = "Developing"
-   };
-   if (type==='2'){
-     t = "Testing"
-       };
-       if (type==='3'){
-         t = "Done"
-           };
-           let s; 
- if (checkbox){
-s = "Make report";
- }
 return (
-  <div classname="tasks">
-      <span><i>Here is task of</i> <b>{ firstname}</b></span>
-  <ul classnme="show" style={show}>
-  <label><b>First name</b></label>
-  <li>  <span
-    className="todo-list-item-label">
-        {firstname}
-        
-  </span>
-  </li>
-  <label><b>Last name</b></label>
-  <li><span
-    className="todo-list-item-label">
-        {lastname}
-        
-  </span>
-  </li>
-  <label><b>Email</b></label>
-  <li><span
-    className="todo-list-item-label">
-        {email}
-        
-  </span>
-  </li>
-  <label><b>From</b></label>
-  <li><span
-    className="todo-list-item-label">
-        {from}
-        
-  </span>
-  </li>
-  <label><b>To</b></label>
-  <li><span
-    className="todo-list-item-label">
-        {to}
-        
-  </span>
-  </li>
-  <label><b>Type</b></label>
-  <li><span 
-     className="todo-list-item-label"> 
-        {t}
-   </span>
-  </li> 
-  <label><b>Checkbox</b></label>
-  <li><span
-    className="todo-list-item-label">
-        {s}
-        
-  </span>
-  </li>
-  <label><b>Comments</b></label>
-  <li><span
-    className="todo-list-item-label">
-        {comments}
-        
-  </span>
-  </li>
-  </ul>
-  <button className="button"
-onClick={onDeleted}
- > Delete
-  </button>
-  <button 
-  className="button"
-  onClick={this.hideText}>
-      Show task</button>
-</div>
+        <div  className="tasks">
+        <span><i>Here is task of</i> <b>{firstname}</b></span>
 
+        <div className= {show ? "open" : null}>
+        <ul classnme="show">
+
+        <label><b>First name</b></label>
+        <li><span className="todo-list-item-label">
+        {firstname}
+        </span>
+        </li>
+
+        <label><b>Last name</b></label>
+        <li><span
+        className="todo-list-item-label">
+        {lastname}    
+        </span>
+        </li>
+
+        <label><b>Email</b></label>
+        <li><span
+        className="todo-list-item-label">
+        {email}
+        </span>
+        </li>
+
+        <label><b>From</b></label>
+        <li><span
+        className="todo-list-item-label">
+        {from}
+        </span>
+        </li>
+
+        <label><b>To</b></label>
+        <li><span
+        className="todo-list-item-label">
+        {to}
+        </span>
+        </li>
+
+        <label><b>Type</b></label>
+        <li><span 
+        className="todo-list-item-label"> 
+        {type}
+        </span>
+        </li> 
+
+        <label><b>Checkbox</b></label>
+        <li><span
+        className="todo-list-item-label">
+        {checkbox}      
+        </span>
+        </li>
+
+        <label><b>Comments</b></label>
+        <li><span
+        className="todo-list-item-label">
+        {comments}
+        </span>
+        </li>
+        </ul>
+        </div>
+
+        <button className="button"
+        onClick={onDeleted}> 
+        Delete
+        </button>
+
+        <button 
+        className="button"
+        onClick={() => {
+        setShow(!show);}}>
+        Show task</button>
+
+      </div>
 );
   }
-} 
+ 
+export default TodoListItem;
