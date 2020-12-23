@@ -4,7 +4,7 @@ import TaskListItem from '../task-list-item';
 
 
 
-const TaskList = ({carttask, onDeleted}) => { 
+const TaskList = ({carttask, onDeleted, onEdit}) => { 
      const elements = carttask.map((item) => { 
        const {id, ...itemProps} = item;
     
@@ -12,6 +12,7 @@ const TaskList = ({carttask, onDeleted}) => {
         <li key={id} className="list-group-item">
           <TaskListItem {...itemProps}
            onDeleted ={() => onDeleted(id)} 
+           onEdit ={() => onEdit(id)} 
           />
         </li> 
        );

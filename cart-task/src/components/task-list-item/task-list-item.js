@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './task-list-item.css';
 
-const TodoListItem = ({onDeleted, ...itemProps}) => {
+const TodoListItem = ({onDeleted,onEdit, ...itemProps}) => {
   const [show, setShow] = useState(true);
 
   const {firstname, lastname, email, from, to, type, checkbox, comments} = itemProps;
@@ -73,6 +73,11 @@ return (
         <button className="button"
         onClick={onDeleted}> 
         Delete
+        </button>
+
+        <button className="button"
+        onClick={onEdit}> 
+        Edit
         </button>
 
         <button 
